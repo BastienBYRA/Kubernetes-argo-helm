@@ -12,6 +12,14 @@ resource "helm_release" "argocd" {
   namespace = "argocd"
 }
 
+# resource "helm_release" "kube_state_metrics_argo_chart" {
+#   name       = "kube-state-metrics"
+#   repository = "https://prometheus-community.github.io/helm-charts"
+#   chart      = "kube-state-metrics"
+#   create_namespace = true
+#   namespace = "ksm"
+# }
+
 # resource "helm_release" "kube_state_metrics" {
 #   name       = "kube-state-metrics"
 #   repository = "https://prometheus-community.github.io/helm-charts"
