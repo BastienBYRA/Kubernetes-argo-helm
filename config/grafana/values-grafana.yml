@@ -263,7 +263,7 @@ datasources:
    datasources:
    - name: Prometheus
      type: prometheus
-     url: http://prometheus-rel-server.prometheus-ns.svc.cluster.local
+     url: http://prometheus-server.prometheus.svc.cluster.local
      access: proxy
      isDefault: true
    - name: VictoriaMetrics
