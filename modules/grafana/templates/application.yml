@@ -1,12 +1,12 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: ksm
+  name: grafana
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
   labels:
-    name: ksm
+    name: grafana
 spec:
   project: default
 
@@ -15,20 +15,20 @@ spec:
     - repoURL: https://github.com/BastienBYRA/Kubernetes-argo-helm.git  # Can point to either a Helm chart repo or a git repo.
       targetRevision: HEAD  # For Helm, this refers to the chart version.
       # path: argocd/kube-state-metrics  # This has no meaning for Helm charts pulled directly from a Helm repo instead of git.
-      path: config/ksm
+      path: config/grafana
       ref: values  # For Helm, acts as a reference to this source for fetching values files from this source. Has no meaning when under `source` field
     
-    - repoURL: https://prometheus-community.github.io/helm-charts
-      targetRevision: 5.26.0  # For Helm, this refers to the chart version.
+    - repoURL: https://grafana.github.io/helm-charts
+      targetRevision: 8.5.8  # For Helm, this refers to the chart version.
       # helm specific config
-      chart: kube-state-metrics  # Set this when pulling directly from a Helm repo. DO NOT set for git-hosted Helm charts.
+      chart: grafana  # Set this when pulling directly from a Helm repo. DO NOT set for git-hosted Helm charts.
       helm:
         # Release name override (defaults to application name)
-        releaseName: ksm
+        releaseName: grafana
         # Helm values files for overriding values in the helm chart
         # The path is relative to the spec.source.path directory defined above
         valueFiles:
-        - $values/values-ksm.yml
+        - $values/config/grafana/values-grafana.yml
         # Ignore locally missing valueFiles when installing Helm chart. Defaults to false
         ignoreMissingValueFiles: false
         # Skip custom resource definition installation if chart contains custom resource definitions. Defaults to false
@@ -37,28 +37,6 @@ spec:
         # and decide which Helm binary to use automatically. This field can be either 'v2' or 'v3'.
         # version: v2
 
-  # Source of the application manifests
-  # source:
-  #   repoURL: https://prometheus-community.github.io/helm-charts  # Can point to either a Helm chart repo or a git repo.
-  #   targetRevision: 5.26.0  # For Helm, this refers to the chart version.
-
-  #   # helm specific config
-  #   chart: kube-state-metrics  # Set this when pulling directly from a Helm repo. DO NOT set for git-hosted Helm charts.
-  #   helm:
-  #     # Release name override (defaults to application name)
-  #     releaseName: ksm
-  #     # Helm values files for overriding values in the helm chart
-  #     # The path is relative to the spec.source.path directory defined above
-  #     valueFiles:
-  #     - values-ksm.yml
-  #     # Ignore locally missing valueFiles when installing Helm chart. Defaults to false
-  #     ignoreMissingValueFiles: false
-  #     # Skip custom resource definition installation if chart contains custom resource definitions. Defaults to false
-  #     skipCrds: false
-  #     # Optional Helm version to template with. If omitted it will fall back to look at the 'apiVersion' in Chart.yaml
-  #     # and decide which Helm binary to use automatically. This field can be either 'v2' or 'v3'.
-  #     # version: v2
-
   # Destination cluster and namespace to deploy the application
   destination:
     # cluster API URL
@@ -66,11 +44,11 @@ spec:
     # or cluster name
     name: in-cluster
     # The namespace will only be set for namespace-scoped resources that have not set a value for .metadata.namespace
-    namespace: ksm
+    namespace: grafana
 
   # Extra information to show in the Argo CD Application details tab
   info:
-    - name: 'KSM Exporter'
+    - name: 'grafana Exporter'
       value: 'https://example.com'
 
   # Sync policy

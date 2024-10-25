@@ -19,6 +19,24 @@ resource "helm_release" "kube_state_metrics_argo_chart" {
   namespace = "ksm"
 }
 
+resource "helm_release" "prometheus_argo_chart" {
+  name       = "prometheus"
+  chart      = "../modules/prometheus"
+  create_namespace = true
+  namespace = "prometheus"
+}
+
+resource "helm_release" "grafana_argo_chart" {
+  name       = "grafana"
+  chart      = "../modules/grafana"
+  create_namespace = true
+  namespace = "grafana"
+}
+
+
+
+
+
 # resource "helm_release" "kube_state_metrics" {
 #   name       = "kube-state-metrics"
 #   repository = "https://prometheus-community.github.io/helm-charts"
