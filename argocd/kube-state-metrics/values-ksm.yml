@@ -33,12 +33,8 @@ releaseLabel: false
 hostNetwork: false
 rbac:
   create: true
-
-    
-    useClusterRole: true
-
-            extraRules: []
-
+  useClusterRole: true
+  extraRules: []
 kubeRBACProxy:
   enabled: false
   image:
@@ -47,10 +43,8 @@ kubeRBACProxy:
     tag: v0.18.0
     sha: ""
     pullPolicy: IfNotPresent
-
-        extraArgs: []
-
-        containerSecurityContext:
+  extraArgs: []
+  containerSecurityContext:
     readOnlyRootFilesystem: true
     allowPrivilegeEscalation: false
     capabilities:
@@ -58,15 +52,15 @@ kubeRBACProxy:
       - ALL
 
   resources: {}
-                                        
-      volumeMounts: []
-            
+
+  volumeMounts: []
+
 serviceAccount:
-    create: true
-      name:
-      imagePullSecrets: []
-        annotations: {}
-    automountServiceAccountToken: true
+  create: true
+  name:
+  imagePullSecrets: []
+  annotations: {}
+  automountServiceAccountToken: true
 
 prometheus:
   monitor:
@@ -78,55 +72,55 @@ prometheus:
     jobLabel: ""
     targetLabels: []
     podTargetLabels: []
-            sampleLimit: 0
+    sampleLimit: 0
 
-            targetLimit: 0
+    targetLimit: 0
 
-            labelLimit: 0
+    labelLimit: 0
 
-            labelNameLengthLimit: 0
+    labelNameLengthLimit: 0
 
-            labelValueLengthLimit: 0
+    labelValueLengthLimit: 0
     selectorOverride: {}
 
-        http:
+    http:
       interval: ""
       scrapeTimeout: ""
       proxyUrl: ""
-            enableHttp2: false
+      enableHttp2: false
       honorLabels: false
       metricRelabelings: []
       relabelings: []
       scheme: ""
-            bearerTokenFile: ""
-                        bearerTokenSecret: {}
-                      tlsConfig: {}
+      bearerTokenFile: ""
+      bearerTokenSecret: {}
+      tlsConfig: {}
 
-        metrics:
+    metrics:
       interval: ""
       scrapeTimeout: ""
       proxyUrl: ""
-            enableHttp2: false
+      enableHttp2: false
       honorLabels: false
       metricRelabelings: []
       relabelings: []
       scheme: ""
-            bearerTokenFile: ""
-                        bearerTokenSecret: {}
-                      tlsConfig: {}
+      bearerTokenFile: ""
+      bearerTokenSecret: {}
+      tlsConfig: {}
 
 podSecurityPolicy:
   enabled: false
   annotations: {}
-                                
+
   additionalVolumes: []
 
 networkPolicy:
   enabled: false
-          flavor: kubernetes
+  flavor: kubernetes
 
-                    
-              
+
+
 securityContext:
   enabled: true
   runAsGroup: 65534
@@ -165,9 +159,9 @@ metricAllowlist: []
 metricDenylist: []
 
 metricLabelsAllowlist: []
-  
+
 metricAnnotationsAllowList: []
-  
+
 collectors:
   - certificatesigningrequests
   - configmaps
@@ -200,11 +194,11 @@ collectors:
 
 kubeconfig:
   enabled: false
-    secret:
+  secret:
 
 customResourceState:
   enabled: false
-    config: {}
+  config: {}
 
 releaseNamespace: false
 
@@ -215,32 +209,32 @@ namespacesDenylist: ""
 namespaceOverride: ""
 
 resources: {}
-                    
+
 kubeTargetVersionOverride: ""
 
 selfMonitor:
   enabled: false
-      
+
 verticalPodAutoscaler:
   enabled: false
 
-          
-    controlledResources: []
-    
-    maxAllowed: {}
-        minAllowed: {}
-    
-                      
+
+  controlledResources: []
+
+  maxAllowed: {}
+  minAllowed: {}
+
+
 volumeMounts: []
 
 volumes: []
 
 extraManifests: []
-              
+
 containers: []
-    
+
 initContainers: []
-    
+
 
 startupProbe:
   enabled: false
