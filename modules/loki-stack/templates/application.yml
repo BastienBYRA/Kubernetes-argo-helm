@@ -19,7 +19,7 @@ spec:
       ref: values  # For Helm, acts as a reference to this source for fetching values files from this source. Has no meaning when under `source` field
     
     - repoURL: https://grafana.github.io/helm-charts
-      targetRevision: 8.5.8  # For Helm, this refers to the chart version.
+      targetRevision: 2.10.2  # For Helm, this refers to the chart version.
       # helm specific config
       chart: loki-stack  # Set this when pulling directly from a Helm repo. DO NOT set for git-hosted Helm charts.
       helm:
