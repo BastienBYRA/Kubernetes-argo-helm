@@ -33,6 +33,13 @@ resource "helm_release" "grafana_argo_chart" {
   namespace = "grafana"
 }
 
+resource "helm_release" "loki_stack_argo_chart" {
+  name       = "loki-stack"
+  chart      = "../modules/loki-stack"
+  create_namespace = true
+  namespace = "loki-stack"
+}
+
 
 
 
